@@ -1,0 +1,46 @@
+﻿@model List<WebApplication2.Models.Employee>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Time Report</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr.less-than-100 {
+            background-color: #ffcccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>Employee Time Report</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Total Time Worked (hours)</th>
+        </tr>
+        @foreach (var employee in Model)
+        {
+            var rowClass = employee.TotalTimeWorked < 100 ? "less-than-100" : "";
+            <tr class="@rowClass">
+                <td>@employee.EmployeeName</td>
+                <td>@employee.TotalTimeWorked</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
